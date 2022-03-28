@@ -1,0 +1,8 @@
+.container{
+  align-items: baseline;
+  display:table;
+  width:100%;
+}
+.col{
+  display:table-cell;
+}

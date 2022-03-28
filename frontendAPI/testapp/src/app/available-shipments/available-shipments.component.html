@@ -1,0 +1,14 @@
+<div
+  *ngFor="let response of shippingResponse?.methods; let i = index"
+  style="width: 18rem; margin: auto; width: 20%; border-style: solid"
+  (click)="clickevent($event, response, i, response?.serviceId)"
+  [ngClass]="{ selected: response.toggle, notselected: !response.toggle }"
+>
+  <div>
+    <p>{{ response.name }}</p>
+    <h3>{{ response?.serviceName }}</h3>
+    <h3>{{ response?.price }}€</h3>
+    <p>{{ response?.serviceId }}</p>
+    <p>{{ response.clicked }}</p>
+  </div>
+</div>

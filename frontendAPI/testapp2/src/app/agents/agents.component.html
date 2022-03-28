@@ -1,0 +1,8 @@
+<div
+  *ngFor="let response of apiresponse?.locations"
+  (click)="selectPlace(response?.serviceId, response?.id)"
+>
+  <h3>{{ response?.name }}</h3>
+  <p>{{ response?.address }}</p>
+  <p>{{ response?.price }}</p>
+</div>

@@ -1,0 +1,74 @@
+<!---->
+<div class="text-center">
+  <h1>API KUTSU! TESTATAAN!</h1>
+
+  <h1>receivers information</h1>
+  <form #userPost="ngForm" (ngSubmit)="onSubmit(userPost.value)">
+    <input type="text" name="R_postcode" ngModel placeholder="postcode" /><br />
+    <input type="text" name="R_address" ngModel placeholder="address" /><br />
+    <input type="text" name="R_city" ngModel placeholder="city" /><br />
+    <input type="text" name="R_email" ngModel placeholder="email" /><br />
+    <input
+      type="text"
+      name="R_phoneNumber"
+      ngModel
+      placeholder="phone number"
+    /><br />
+    <input
+      type="text"
+      name="R_name"
+      ngModel
+      placeholder="firstname and lastname"
+    /><br />
+    <button type="submit">laita data!</button>
+  </form>
+
+  <div>
+    <h1>Laitettu data:</h1>
+    <p>{{ R_postcode }}</p>
+
+    <div *ngFor="let item of wantedServiceId | keyvalue">
+      {{ item.value | json }}
+    </div>
+  </div>
+
+  <div class="container">
+    <app-available-shipments
+      [receiverPostcode]="R_postcode"
+      [sender]="senderinfo"
+      [wantedServiceId]="wantedServiceId"
+      (newItemEvent)="addSelectedServiceId($event)"
+    >
+    </app-available-shipments>
+    <div
+      class="row justify-content-md-center"
+      *ngFor="let response of apirespone?.locations"
+    >
+      <div class="col-md-4 bg-info h-100 w-25 d-flex justify-content-center">
+        <img height="100px" src="{{ response?.carrierLogo }}" alt="logo" />
+      </div>
+
+      <div class="col-md-8 bg-green float-right w-75">
+        <h3>{{ response?.name }}</h3>
+        <p>{{ response?.address1 }}</p>
+        <p>{{ response?.city }}</p>
+        <p>{{ response?.countryCode }}</p>
+        <p>{{ response?.carrier }}</p>
+        <p>{{ response?.serviceId }}</p>
+      </div>
+    </div>
+
+    <app-list-methods> </app-list-methods>
+    <app-agents
+      [receiverPostcode]="R_postcode"
+      [serviceId]="selectedServiceId"
+    ></app-agents>
+  </div>
+
+  <app-shipment
+    [sender]="senderinfo"
+    [receiver]="receiverinfo"
+    [serviceId]="selectedServiceId"
+    [parcels]="parcelinfo"
+  ></app-shipment>
+</div>

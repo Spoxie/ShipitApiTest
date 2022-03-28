@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@angular/forms": "^13.0.1",
+    "@ng-bootstrap/ng-bootstrap": "^11.0.0",
+    "@ng-select/ng-select": "^8.1.1",
+    "bootstrap": "^5.1.3",
+    "jquery": "^3.6.0"
+  }
+}

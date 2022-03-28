@@ -1,0 +1,76 @@
+<div>
+  <button (click)="shipment()">LAITA SHIPMENT</button>
+  <form #userPost="ngForm" (ngSubmit)="onsubmit(userPost.value)">
+    <input
+      type="text"
+      name="R_postcode"
+      ngModel
+      placeholder="postcode"
+      [ngModel]="testreceiver.postcode"
+    /><br />
+    <input
+      type="text"
+      name="R_address"
+      ngModel
+      placeholder="address"
+      [ngModel]="testreceiver.address"
+    /><br />
+    <input
+      type="text"
+      name="R_city"
+      ngModel
+      placeholder="city"
+      [ngModel]="testreceiver.city"
+    /><br />
+    <input
+      type="text"
+      name="R_email"
+      ngModel
+      placeholder="email"
+      [ngModel]="testreceiver.email"
+    /><br />
+    <input
+      type="text"
+      name="R_phoneNumber"
+      ngModel
+      placeholder="phone number"
+      [ngModel]="testreceiver.phone"
+    /><br />
+    <input
+      type="text"
+      name="R_name"
+      ngModel
+      placeholder="firstname and lastname"
+      [ngModel]="testreceiver.name"
+    /><br />
+    <input type="checkbox" name="fragile" />
+    <input type="checkbox" name="dangerous" />
+    <label>
+      <input type="radio" name="pickup" value="pickup" />
+      <input type="radio" name="delivery" value="delivery" />
+      <input type="radio" name="delivery09" value="delivery09" />
+    </label>
+
+    <button type="submit">laita data!</button>
+  </form>
+  <div class="d-flex flex-wrap">
+    <div class="w-25" *ngFor="let x of locations; let i = index">
+      <label>
+        <input
+          type="radio"
+          name="radioname"
+          value="{{ x.name }}"
+          (change)="takeInfo(i, x)"
+        />
+
+        <h1>{{ x?.name }}</h1>
+        <p>{{ x?.carrier }}</p>
+        <p>{{ x?.address1 }}</p>
+        <p>{{ x?.zipcode }}</p>
+        <p>{{ x?.price }}</p>
+        <p>{{ x?.serviceId }}</p>
+        <!--HUOM! UPS EI TOIMI JOSTAIN SYYSTÄ-->
+      </label>
+    </div>
+  </div>
+</div>
